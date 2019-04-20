@@ -1,84 +1,89 @@
 .DisasterPosts {
-    padding: 60px;
+  /* padding: 60px; */
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .DisasterPosts .posts-list-container {
-    display: grid;
-    height: 800px;
-    overflow-y: scroll;
-    gap: 40px 0;
+  display: grid;
+  height: 800px;
+  overflow-y: scroll;
+  gap: 40px 0;
 }
 
 @media (max-width: 1000px) {
-    .DisasterPosts .posts-list-container .post-details {
-        border: solid 1px red;
-        display: grid;
-        grid-template-rows: 1fr 1fr 1fr; 
-        grid-template-areas: 
-            'map-area'
-            'disaster-details-area'
-            'contact-details-area';
-    }
+  .DisasterPosts .posts-list-container .post-details {
+    border: solid 1px red;
+    display: grid;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    grid-template-areas:
+      "map-area"
+      "disaster-details-area"
+      "contact-details-area";
+  }
 }
 .DisasterPosts .posts-list-container .post-details {
-    border: solid 1px #bcbcbc;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-areas: 
-        'map-area disaster-details-area contact-details-area'
+  border: solid 1px #bcbcbc;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "map-area disaster-details-area contact-details-area";
 }
 
 .DisasterPosts .posts-list-container .post-details .contact-details {
-    grid-area: contact-details-area;
+  grid-area: contact-details-area;
 }
 
 .DisasterPosts .posts-list-container .post-details .map {
-    grid-area: map-area;
-    border-right: 1px solid #bcbcbc;
+  grid-area: map-area;
+  border-right: 1px solid #bcbcbc;
 }
 
 .DisasterPosts .posts-list-container .post-details .disaster-details {
-    grid-area: disaster-details-area;
-    border-right: 1px solid #bcbcbc;
-    text-align: left;
-    padding: 10px;
+  grid-area: disaster-details-area;
+  border-right: 1px solid #bcbcbc;
+  text-align: left;
+  padding: 10px;
 }
 
-.DisasterPosts .posts-list-container .post-details .disaster-details .updates-list {
-    width: 50%;
+.DisasterPosts
+  .posts-list-container
+  .post-details
+  .disaster-details
+  .updates-list {
+  width: 50%;
 }
 
 .DisasterPosts .modal-details {
-    display: block;
-    position: relative;
-    margin: auto;
-    z-index: 6;
-    width: 60%;
-    height: fit-content;
-    background-color: white;
-    text-align: center;
+  display: block;
+  position: relative;
+  margin: auto;
+  z-index: 6;
+  width: 60%;
+  height: fit-content;
+  background-color: white;
+  text-align: center;
 }
 
 .DisasterPosts .modal-details .map {
-    display: block;
-    margin: auto;
-    width: 100%;
-    border-bottom: 1px solid #4c4c4c;
+  display: block;
+  margin: auto;
+  width: 100%;
+  border-bottom: 1px solid #4c4c4c;
 }
 
 .DisasterPosts .modal-details .close-button {
-    position: absolute;
-    top: 6px;
-    right: 10px;
-    font-size: 16px;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 16px;
 }
 
 .DisasterPosts .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(30, 30, 30, 0.6);
-    z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(30, 30, 30, 0.6);
+  z-index: 5;
 }
