@@ -1,4 +1,5 @@
 import React, { useContext, useState, useReducer } from 'react'
+import Select from 'react-select'
 import _ from 'lodash'
 import moment from 'moment'
 import PostContext from '../../context/PostContext'
@@ -6,6 +7,7 @@ import FormContext from '../../context/FormContext'
 import { AddressMarkup, ContactMarkup, InformationMarkup } from '../PostMarkup/PostMarkup'
 import { validateEmail } from '../../Utilities/validationUtilities'
 import { getLatLng } from '../../services/locationiq/api.js'
+import { summaryOptions } from '../../Utilities/translations'
 
 import './AdminForm.css'
 
@@ -15,7 +17,7 @@ import './AdminForm.css'
  *  @param {string}     submitName          form button label
  *  @param {function}   submitHandler       form submit action
  */
-export default function AdminForm({ submitName, submitHandler = () => {} }) {
+export default function AdminForm({ submitName, submitHandler = () => {}, languageOption = 'en' }) {
 
     // state hooks + reducers
 
@@ -39,6 +41,8 @@ export default function AdminForm({ submitName, submitHandler = () => {} }) {
             longitude: '',
             latitude: '',
             radius: '',
+            selectedSummaryForTranslation: {},
+            selectedIconsForTranslation: [],
         },
         errors: {},
         apiLoading: false
@@ -205,9 +209,31 @@ export default function AdminForm({ submitName, submitHandler = () => {} }) {
           setApiLoading(false);
         }
     }
-
+    const updatedOptions = summaryOptions.map((option, index) => {
+        const value = option[languageOption]
+        return {
+            label: value,
+            value: value,
+            index: index,
+        }
+    })
+    const handleSummarySelection = (e) => {
+        setFields({
+            ...fields,
+            selectedSummaryForTranslation: {
+                translationsValue: e.vaule,
+                index: e.index,
+            }
+        })
+    }
+    const summaryOptionsMarkup = (
+        <Select
+            options={ updatedOptions }
+            onChange={ handleSummarySelection }
+        />
+    )
     return (
-        <section id = 'adminForm' className = 'form-content'>
+        <section id = 'adminForm' className = 'AdminForm'>
             <div className = 'form-group'>
                 <h3>Disaster Information</h3>
                 <InformationMarkup
@@ -215,6 +241,10 @@ export default function AdminForm({ submitName, submitHandler = () => {} }) {
                     updateHandler = { handleAddUpdateItem }
                     editMode = { true }
                 />
+            </div>
+            <div className='form-group'>
+                <h3>Multiligual Option Selection</h3>
+                { summaryOptionsMarkup }
             </div>
             <div className = 'form-group'>
                 <h3>Disaster Location Details</h3>

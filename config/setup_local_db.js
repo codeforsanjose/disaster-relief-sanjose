@@ -1,5 +1,5 @@
 const ObjectID = require('mongodb').ObjectID
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').MongoClient({ useUnifiedTopology: true })
 
 let db
 let db_local
@@ -30,7 +30,7 @@ const copyProdToLocal = (db) => {
 
 // otherwise setup an empty collection for local usage
 const createLocalDB = () => {
-    MongoClient.connect(local_url, (err, dbParam) => {
+    MongoClient.connect((err, dbParam) => {
         console.log("url:", local_url)
         console.log("error:", err)
         console.log('Successfully connected to MongoDB server.', dbParam)
